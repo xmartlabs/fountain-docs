@@ -1,5 +1,7 @@
 # NetworkDataSourceAdapter
-The `NetworkDataSourceAdapter` is an adaper which provides the required methods to handle the network requests.
+The `NetworkDataSourceAdapter` is an adapter which provides the required methods to handle the network requests.
+
+First the `PageFetcher` concept should be introduced
 
 ## Page Fetcher
 The `PageFetcher` is used to fetch each page from the service.
@@ -15,10 +17,10 @@ This interface has only one method which is used to fetch every page.
 The library will invoke it with two parameters: 
 - `page`: The page number to be requested.
 - `pageSize`: The page size.
-This parameter must to be respected, usually the initial load page size have a different `pageSize` than the other requests.
+This parameter must be respected, usually the initial load page size has a different `pageSize` than the other requests.
 *If the server doesn't support a custom `pageSize`, you have to setup the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html) to use the same page size for all requests.
-You can do that setting `1` in the [`setInitialLoadSizeHint()`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
-This configuration can be set in the [Fountain creator](Fountain.md).*
+You can do it by setting `1` in the [`setInitialLoadSizeHint()`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
+This configuration can be set in the [Fountain `Listing` provider](Fountain.md).*
 
 ## NetworkDataSourceAdapter
 The `NetworkDataSourceAdapter` is an adapter with two features:
@@ -32,14 +34,13 @@ interface NetworkDataSourceAdapter<T> : PageFetcher<T> {
 }
 ```
 
-`NetworkDataSourceAdapter` is a `PageFetcher` with an additional method, `canFetch`, which is used to stop requesting pages.
-For example, if you know that the server has only 3 pages of 10 items each, and the library invokes `canFetch(page = 5, pageSize = 10)` then you should return `false`.
+`NetworkDataSourceAdapter` is a `PageFetcher` with an additional method, `canFetch`, used to stop requesting pages.
+For example, if you know that the endpoint returns only 3 pages of 10 items each, and the library invokes `canFetch(page = 5, pageSize = 10)` then you should return `false`.
 You have to implement this function using the service specification.
 Sometimes the service returns the page or entity amount in the response headers or in the response body, so you have to use that information to implement this function.
 
-
 ## NetworkDataSourceAdapter of ListResponse
-The library requires a `NetworkDataSourceAdapter<ListResponse<T>>` to execute the requests and consume the responses. There're several [`ListResponse`](ListResponse.md) types that you can use.
+The library requires a `NetworkDataSourceAdapter<ListResponse<T>>` to execute the requests and consume the responses. There're several [`ListResponse`] types that you can use.
 
 ## NetworkDataSourceAdapter providers
 
@@ -60,3 +61,5 @@ class NetworkDataSourceWithKnownEntityCountAdapter<T>(
 
 Depending on whether you know the entity or the page count, we will use either `NetworkDataSourceWithKnownEntityCountAdapter` or `NetworkDataSourceWithKnownEntityCountAdapter`.
 
+[`Fountain`]: Fountain.md
+[`ListResponse`]: ListResponse.md

@@ -1,7 +1,5 @@
-# DataSource & CachedDataSourceAdapter
-
 ## CachedDataSourceAdapter
-The `CachedDataSourceAdapter` is an adapter that the library will use to take control of the [`DataSource`](https://developer.android.com/reference/android/arch/paging/DataSource).
+The `CachedDataSourceAdapter` is an adapter that the library will use to cache the entities in the [`DataSource`].
 
 ```kotlin
 interface CachedDataSourceAdapter<T> {
@@ -22,35 +20,35 @@ The adapter has four methods that the user has to implement:
 
 - `getDataSourceFactory`: will be used to list the cached elements.
 The returned value is used to create the [`LivePagedListBuilder`](https://developer.android.com/reference/android/arch/paging/LivePagedListBuilder).
-- `runInTransaction` will be used to apply multiple `DataSource` operations in a single transaction. That means that if something fails, all operations will fail.
-- `saveEntities` will be invoked to save all entities into the `DataSource`.
+- `runInTransaction` will be used to apply multiple [`DataSource`] operations in a single transaction. That means that if something fails, all operations will fail.
+- `saveEntities` will be invoked to save all entities into the [`DataSource`].
 This will be executed in a transaction.
-- `dropEntities` will be used to delete all cached entities from the `DataSource`.
+- `dropEntities` will be used to delete all cached entities from the [`DataSource`].
 This will be executed in a transaction.
 
-## DataSource
-The implementation of the `CachedDataSourceAdapter` will depend mostly in the `DataSource` that we choose.
-So, in order to make the things easier we'll use the [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room) which provides a [`DataSource`](https://developer.android.com/reference/android/arch/paging/DataSource) trivially.
-However, you could use any other [`DataSource`](https://developer.android.com/reference/android/arch/paging/DataSource).
+# DataSource
+The implementation of the `CachedDataSourceAdapter` will depend mostly on the [`DataSource`] that we choose.
+So, to make it easier we will use the [Room Persistence Library](https://developer.android.com/topic/libraries/architecture/room) which provides a [`DataSource`] trivially.
+However, you could use any other [`DataSource`].
 
-### Save and retrieve data
-The [`DataSource`](https://developer.android.com/reference/android/arch/paging/DataSource) must to have the ability of returning the entities in the same order that the entities were provided by the service.
+## Save and retrieve data
+The [`DataSource`] should return the entities in the same order as the entities were provided by the service.
 
-There are, at least, two approaches that we can follow to solve this problem.
-1. Add an index in the entity.
+There are, at least, two approaches we can follow to solve this problem.
+1. Add an index to the entity.
 1. Add a secondary entity to save the index.
 
-### Add an index in the entity
+### Add an index to the entity
 
-The first approach consist of adding an index position in the entity.
-Then, when a new page come, you have to search the bigger index position in the [`DataSource`](https://developer.android.com/reference/android/arch/paging/DataSource) and update all entities in the response, incrementing that index by one.
+The first approach consists of adding an index position in the entity.
+Then, when a new page comes, you have to search the bigger index position in the [`DataSource`] and update all entities in the response, incrementing that index by one.
 
 ```kotlin
 @Entity
-class Entity(@PrimaryKey var id: Long, val index: Long, ....)
+class Entity(@PrimaryKey var id: Long, val index: Long, ...)
 ```
 
-Using room, we have to define four methods, in the `Entity` [`Dao`](https://developer.android.com/training/data-storage/room/accessing-data), to provide the `CachedDataSourceAdapter`.
+Using Room, we have to define four methods, in the `Entity` [`Dao`](https://developer.android.com/training/data-storage/room/accessing-data), to provide the `CachedDataSourceAdapter`.
 
 
 ```kotlin
@@ -75,7 +73,7 @@ interface EntityDao {
 - `getNextIndex`: A method to return the next index value.
 - `deleteEntities`: A method to delete the entities.
 
-Using the `EntityDao` the `CachedDataSourceAdapter` is:
+Using the `EntityDao`, the `CachedDataSourceAdapter` is:
 
 ```kotlin
 val cachedDataSourceAdapter = object : CachedDataSourceAdapter<Entity> {
@@ -99,16 +97,17 @@ val cachedDataSourceAdapter = object : CachedDataSourceAdapter<Entity> {
 ```
 
 ### Add a secondary entity to save the index
-Although the previous approach work in some cases, there are other complex cases that this solution will not work.
-Suppose there are multiple services that could return the same entities.
-In this case, using the current approach, we have to add two position indexes in the `Entity`.
-Even though that will work, that's no so clean.
-We are adding some logic in an entity that is not directly connected to it.
-Furthermore, suppose that you need to save some parameter, for example a filter field, in that case you will not able to model that with a single entity.
+Although the previous approach works in some cases, there are other complex cases in which it will not work.
+Suppose there are multiple services that could return the same entities but with different orderings.
+In this case, using the current approach, we have to add two position indexes to the `Entity`.
+Even though that it will work, it's no so elegant.
+We are adding some logic to an entity that is not directly connected to it.
+Furthermore, suppose that you need to save some parameter, for example a filter field.
+In that case, you will not be able to model it with a single entity.
 
-The second approach to solve the problem is having multiple entities to model this problem.
-An entity to model the specific entity, which contains only the entity information, and one entity per sort relation.
-In the last model category, you can also save the parameter list, such us the listing filters or sort parameters which were used to make the service request.
+The second approach to solve the problem is having multiple objects to model this problem.
+One object to model the entity itself and one object for each relationship or ordering of this entity.
+In the last model category, you can also save the parameter list, such as the listing filters or sort parameters which were used to make the service request.
 
 ```kotlin
 @Entity
@@ -156,9 +155,9 @@ interface EntityDao {
 
 Using the `EntityDao`, we can implement the `CachedDataSourceAdapter`.
 Some considerations to take into account when we are implementing the `CachedDataSourceAdapter` are:
-- The `saveEntities` method, has to save the entities and the related entities.
-- The `dropEntities` method, can delete both entities or just drop the related entity.
-If there are multiple services that can return the same entities, we should take some considerations to delete both entities and keep the [`DataSource`](https://developer.android.com/reference/android/arch/paging/DataSource) consistence. 
+- The `saveEntities` method has to save the entities and the related entities.
+- The `dropEntities` method can delete both entities or just drop the related entity.
+If there are multiple services that can return the same entities, we should take some considerations to delete both entities and keep the [`DataSource`] consistency. 
 
 ```kotlin
 val cachedDataSourceAdapter = object : CachedDataSourceAdapter<Entity> {
@@ -186,8 +185,10 @@ val cachedDataSourceAdapter = object : CachedDataSourceAdapter<Entity> {
 
 ### One entity vs Multiple entities
 
-Although we have presented present two approaches, we recommend use the second one.
-This is a bit harder to implement than the other one, but it has some advantages.
-It's cleaner and it's more flexible than the first one.
-In both approaches you have to take account some considerations before drop the entities.
-However, the second one provides a easier and cleaner way to implement and understand these considerations.
+Although we have presented two approaches, we recommend using the second one.
+It's a bit harder to implement than the other one, but it has some advantages.
+It's cleaner and more flexible than the first one.
+In both approaches you have to remember extra steps before dropping the entities.
+However, the second one provides an easier and cleaner way to implement them.
+
+[`DataSource`]: https://developer.android.com/reference/android/arch/paging/DataSource

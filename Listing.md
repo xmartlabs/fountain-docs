@@ -1,6 +1,6 @@
 # Listing
 
-`Listing` is a structure designed to manage a list streams.
+`Listing` is a structure designed to manage a list stream.
 
 ```kotlin
 data class Listing<T>(

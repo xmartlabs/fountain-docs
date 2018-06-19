@@ -8,11 +8,11 @@ interface ListResponse<T> {
 }
 ```
 
-Additionally, there are other responses types that can be used when the service provides you more information in the response.
+Additionally, there are other response types that can be used when the service provides more information in the response.
 
 ## List Response with Entity Count
 
-Used when the service provides you the amount of entities.
+Used when the service provides the amount of entities.
 
 ```kotlin
 interface ListResponseWithEntityCount<T> : ListResponse<T> {
@@ -22,7 +22,7 @@ interface ListResponseWithEntityCount<T> : ListResponse<T> {
 
 ## List Response with Page Count
 
-Used when the service provides you the amount of pages.
+Used when the service provides the amount of pages.
 
 ```kotlin
 interface ListResponseWithPageCount<T> : ListResponse<T> {

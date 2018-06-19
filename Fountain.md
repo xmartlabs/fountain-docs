@@ -1,12 +1,12 @@
 # Fountain
 
-Fountain structure provides two methods, one for each library way:
-- A **Network support** [`Listing`](Listing.md) creator
-- A **Cache + Network support** [`Listing`](Listing.md) creator
+Fountain structure provides two static factory methods for Listing:
+- A **Network support** [`Listing`] creator
+- A **Cache + Network support** [`Listing`] creator
 
 ## Network Support Listing Creator
 
-Network support Listing can be created invoking the `createNetworkListing` method in `Fountain` structure.
+A Listing with Network support can be created invoking the `createNetworkListing` method in the `Fountain` structure.
 ```kotlin
 fun <Value> createNetworkListing(
   networkDataSourceAdapter: NetworkDataSourceAdapter<out ListResponse<Value>>,
@@ -27,7 +27,7 @@ In this object you can specify several options, for example the `pageSize` and t
 
 ## Cache + Network Support Listing Creator
 
-Cache + Network Support Listing can be created invoking the `createNetworkWithCacheSupportListing` method in `Fountain` structure
+A Listing with Cache + Network Support can be created invoking the `createNetworkWithCacheSupportListing` method in the `Fountain` structure
 
 ```kotlin
 fun <Value> createNetworkWithCacheSupportListing(
@@ -40,11 +40,9 @@ fun <Value> createNetworkWithCacheSupportListing(
 )
 ```
 
-
-There're two required components 
+There are two required components 
 1. A [`NetworkDataSourceAdapter<out ListResponse<Value>>`](NetworkDataSourceAdapter.md) to fetch all pages.
 1. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to take control of the `DataSource`.
-
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.
@@ -53,3 +51,4 @@ In addition, there are some optional parameters that you can define:
 - [`pagedListConfig: PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config): The paged list configuration.
 In this object you can specify several options, for example the `pageSize` and the `initialPageSize`. 
 
+[`Listing`]: Listing.md
