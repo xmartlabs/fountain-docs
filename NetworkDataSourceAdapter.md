@@ -1,7 +1,7 @@
 # NetworkDataSourceAdapter
 The `NetworkDataSourceAdapter` is an adapter which provides the required methods to handle the network requests.
 
-First the `PageFetcher` concept should be introduced
+First the `PageFetcher` concept should be introduced.
 
 ## Page Fetcher
 The `PageFetcher` is used to fetch each page from the service.
@@ -20,7 +20,7 @@ The library will invoke it with two parameters:
 This parameter must be respected, usually the initial load page size has a different `pageSize` than the other requests.
 *If the server doesn't support a custom `pageSize`, you have to setup the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html) to use the same page size for all requests.
 You can do it by setting `1` in the [`setInitialLoadSizeHint()`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
-This configuration can be set in the [Fountain `Listing` provider](Fountain.md).*
+This configuration can be set in the [Fountain factory](Fountain.md).*
 
 ## NetworkDataSourceAdapter
 The `NetworkDataSourceAdapter` is an adapter with two features:

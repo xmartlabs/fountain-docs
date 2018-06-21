@@ -1,8 +1,6 @@
 # Fountain
 
-Fountain structure provides two static factory methods for Listing:
-- A **Network support** [`Listing`] creator
-- A **Cache + Network support** [`Listing`] creator
+Fountain is a [`Listing`] Factory, that provides two static factory methods: a **Network support** factory method and a **Cache + Network support** factory method.
 
 ## Network Support Listing Creator
 

@@ -9,11 +9,11 @@ If you get a repository which provides a [`Listing`] component of each paged lis
 It also provides two ways to go: a mode with **network** support and a mode with **network + cache** support. 
 
 The strategy you choose will depend on your problem.
-To create the [`Listing`] you have to invoke one of the static factory methods in the [`Fountain`] object.
+To create the [`Listing`] you have to invoke one of the static factory methods in the [`Fountain`] singleton object.
 
 ## **Network Support** 
 
-Provide a [`Listing`](Listing.md) structure based on a [Retrofit](http://square.github.io/retrofit/) and [RxJava](https://github.com/ReactiveX/RxJava) service.
+It provides a [`Listing`](Listing.md) structure based on a [Retrofit](http://square.github.io/retrofit/) and [RxJava](https://github.com/ReactiveX/RxJava) service.
 Note that the entities aren't saved anywhere.
 
 To use this feature you have to provide a [`NetworkDataSourceAdapter<out ListResponse<Value>>`](NetworkDataSourceAdapter.md) to the Listing constructor. 
@@ -27,7 +27,7 @@ Additionally, there are some optional parameters that you can provide to the [`L
 
 ## **Network + Cache Support** 
 
-Provide a [`Listing`](Listing.md) structure with cache support using [Retrofit](http://square.github.io/retrofit/) and [RxJava](https://github.com/ReactiveX/RxJava) for the service layer and a [`DataSource`] for caching the data.
+It provides a [`Listing`](Listing.md) structure with cache support using [Retrofit](http://square.github.io/retrofit/) and [RxJava](https://github.com/ReactiveX/RxJava) for the service layer and a [`DataSource`] for caching the data.
 
 ```kotlin
 Fountain.createNetworkWithCacheSupportListing(
@@ -52,7 +52,7 @@ The pagination strategy that is using **Fountain** can be seen in the following 
 
 The paging strategy starts with an initial service data request.
 By default the initial data requested is three pages size, but this value can be changed, in the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html), using the [`setInitialLoadSizeHint`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
-This parameter can be set in the [`Listing`](Listing.md) factory method. 
+This parameter can be set in the [`Fountain`](Listing.md) factory method. 
 When the service data comes, all data is refreshed in the [`DataSource`] using the [`CachedDataSourceAdapter`].
 Note that the [`Listing`](Listing.md) component will notify that the data changed.
 

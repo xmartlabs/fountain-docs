@@ -40,7 +40,7 @@ There are, at least, two approaches we can follow to solve this problem.
 
 ### Add an index to the entity
 
-The first approach consists of adding an index position in the entity.
+The first approach consists of adding an index position to the entity.
 Then, when a new page comes, you have to search the bigger index position in the [`DataSource`] and update all entities in the response, incrementing that index by one.
 
 ```kotlin
@@ -188,7 +188,7 @@ val cachedDataSourceAdapter = object : CachedDataSourceAdapter<Entity> {
 Although we have presented two approaches, we recommend using the second one.
 It's a bit harder to implement than the other one, but it has some advantages.
 It's cleaner and more flexible than the first one.
-In both approaches you have to remember extra steps before dropping the entities.
+In both approaches you have to remember extra steps to take before dropping the entities.
 However, the second one provides an easier and cleaner way to implement them.
 
 [`DataSource`]: https://developer.android.com/reference/android/arch/paging/DataSource
