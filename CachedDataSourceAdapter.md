@@ -187,8 +187,7 @@ val cachedDataSourceAdapter = object : CachedDataSourceAdapter<Entity> {
 
 Although we have presented two approaches, we recommend using the second one.
 It's a bit harder to implement than the other one, but it has some advantages.
-It's cleaner and more flexible than the first one.
 In both approaches you have to remember extra steps to take before dropping the entities.
-However, the second one provides an easier and cleaner way to implement them.
+However, the second one provides an easier and more flexible way to implement them.
 
 [`DataSource`]: https://developer.android.com/reference/android/arch/paging/DataSource
