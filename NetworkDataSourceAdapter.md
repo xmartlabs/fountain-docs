@@ -48,18 +48,18 @@ if you know exactly the page or entity count, the library provides a way to gene
 
 
 ```kotlin
-class NetworkDataSourceWithKnownEntityCountAdapter<T>(
+class NetworkDataSourceWithTotalEntityCountAdapter<T>(
   val pageFetcher: PageFetcher<out ListResponseWithEntityCount<T>>,
   firstPage: Int = 1
 ) : NetworkDataSourceAdapter<ListResponse<T>>
 
-class NetworkDataSourceWithKnownEntityCountAdapter<T>(
+class NetworkDataSourceWithTotalPageCountAdapter<T>(
   val pageFetcher: PageFetcher<out ListResponseWithPageCount<T>>,
   firstPage: Int = 1
 ) : NetworkDataSourceAdapter<ListResponse<T>>
 ```
 
-Depending on whether you know the entity or the page count, we will use either `NetworkDataSourceWithKnownEntityCountAdapter` or `NetworkDataSourceWithKnownEntityCountAdapter`.
+Depending on whether you know the entity or the page count, we will use either `NetworkDataSourceWithTotalEntityCountAdapter` or `NetworkDataSourceWithTotalPageCountAdapter`.
 
 [`Fountain`]: Fountain.md
 [`ListResponse`]: ListResponse.md
