@@ -1,6 +1,6 @@
 # Fountain
 
-Fountain is a [`Listing`] Factory, that provides two static factory methods: a **Network support** factory method and a **Cache + Network support** factory method.
+Fountain is a [`Listing`] factory, that provides two static methods: one for **Network support** and another one for **Cache + Network support**.
 
 ## Network Support Listing Creator
 
