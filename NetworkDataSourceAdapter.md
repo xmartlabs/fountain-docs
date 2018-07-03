@@ -1,7 +1,7 @@
 # NetworkDataSourceAdapter
 The `NetworkDataSourceAdapter` is an adapter which provides the required methods to handle the network requests.
 
-First the `PageFetcher` concept should be introduced.
+Let's introduce the `PageFetcher` concept.
 
 ## Page Fetcher
 The `PageFetcher` is used to fetch each page from the service.
@@ -13,7 +13,7 @@ interface PageFetcher<T> {
 }
 ```
 
-This interface has only one method which is used to fetch every page.
+This interface has only one method which is used to fetch each page.
 The library will invoke it with two parameters: 
 - `page`: The page number to be requested.
 - `pageSize`: The page size.

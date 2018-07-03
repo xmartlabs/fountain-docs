@@ -44,8 +44,8 @@ There are two required components
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.
-- [`ioServiceExecutor : Executor`](https://developer.android.com/reference/java/util/concurrent/Executor): The executor with which the service call will be made.  By default, the library will use a pool of 5 threads.
-- [`ioDatabaseExecutor : Executor`](https://developer.android.com/reference/java/util/concurrent/Executor): The executor where database transactions will be done. By default the library will use a single thread executor.
+- [`ioServiceExecutor : Executor`](https://developer.android.com/reference/java/util/concurrent/Executor): The executor through which the service call will be made  By default, the library will use a pool of 5 threads.
+- [`ioDatabaseExecutor : Executor`](https://developer.android.com/reference/java/util/concurrent/Executor): The executor through which the database transactions will be made. By default the library will use a single thread executor.
 - [`pagedListConfig: PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config): The paged list configuration.
 In this object you can specify several options, for example the `pageSize` and the `initialPageSize`. 
 
