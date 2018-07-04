@@ -41,12 +41,12 @@ There are two required components
 1. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to update the [`DataSource`].
 It's the interface that the library will use to take control of the [`DataSource`].
 
-As well as in the previous way, there are some optional parameters that you can specify in the [`Listing`](Listing.md) creator.
+As in the previous way, there are some optional parameters that you can specify in the [`Listing`](Listing.md) creator.
 
 ### Caching strategy
 <!--
 The pagination strategy that is using **Fountain** can be seen in the following image.
-
+k
 ***TODO: Add an image ***
 -->
 
