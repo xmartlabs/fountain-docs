@@ -22,7 +22,7 @@ data class NetworkState private constructor(
 }
 ```
 
-The `NetworkState` has an associated `Status` which has three possible values:
+The `NetworkState` has an associated `Status` with three possible values:
 - `RUNNING`: Indicate that a service call is running.
 - `SUCCESS`: Indicate that a service call executed successfully.
 - `FAILED`: Indicate that a service call failed.

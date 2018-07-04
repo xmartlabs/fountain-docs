@@ -13,13 +13,14 @@ interface PageFetcher<T> {
 }
 ```
 
-This interface has only one method which is used to fetch each page.
+This interface has only one method which is used to fetch every page.
 The library will invoke it with two parameters: 
 - `page`: The page number to be requested.
 - `pageSize`: The page size.
 This parameter must be respected, usually the initial load page size has a different `pageSize` than the other requests.
 *If the server doesn't support a custom `pageSize`, you have to setup the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html) to use the same page size for all requests.
-You can do it by setting `1` in the [`setInitialLoadSizeHint()`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
+You can do it by setting `pageSize` in the [`setInitialLoadSizeHint()`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
+The `InitialLoadSizeHint` must to be a multiple of the page size.
 This configuration can be set in the [Fountain factory](Fountain.md).*
 
 ## NetworkDataSourceAdapter
@@ -40,7 +41,7 @@ You have to implement this function using the service specification.
 Sometimes the service returns the page or entity amount in the response headers or in the response body, so you have to use that information to implement this function.
 
 ## NetworkDataSourceAdapter of ListResponse
-The library requires a `NetworkDataSourceAdapter<ListResponse<T>>` to execute the requests and consume the responses. There're several [`ListResponse`] types that you can use.
+The library requires a `NetworkDataSourceAdapter<ListResponse<T>>` to execute the requests and consume the responses. There are several [`ListResponse`] types that you can use.
 
 ## NetworkDataSourceAdapter providers
 

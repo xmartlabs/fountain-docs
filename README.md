@@ -1,7 +1,7 @@
 Fountain is an Android Kotlin library conceived to make your life easier when dealing with **paged** endpoint **services**, where the paging is based on incremental page numbers (e.g. 1, 2, 3, ...).
-It uses the [Google Android Architecture Components](https://developer.android.com/topic/libraries/architecture/), mainly the [Android Paging Library] to make easier to work with paged services.
+It uses the [Google Android Architecture Components](https://developer.android.com/topic/libraries/architecture/), mainly the [Android Paging Library] to make it easier to work with paged services.
 
-The main goal of the library is to easily provide a [Listing](Listing.md) component from a common service specification, where the paginated strategy is based on an incremental page number.
+The main goal of the library is to provide a [Listing](Listing.md) component from a common service specification, where the paginated strategy is based on an incremental page number.
 It provides an awesome way of displaying the paged entity list and reflecting the network state in the UI.
 If you use this library, you can create an MVVM architecture app and combine it with the repository pattern.
 If you get a repository which provides a [`Listing`] component of each paged list, you will be creating a robuster app.
@@ -36,7 +36,7 @@ Fountain.createNetworkWithCacheSupportListing(
 )
 
 ```
-There're two required components 
+There are two required components 
 1. A [`NetworkDataSourceAdapter<out ListResponse<Value>>`](NetworkDataSourceAdapter.md) to fetch all pages.
 1. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to update the [`DataSource`].
 It's the interface that the library will use to take control of the [`DataSource`].
@@ -51,7 +51,7 @@ The pagination strategy that is using **Fountain** can be seen in the following 
 -->
 
 The paging strategy starts with an initial service data request.
-By default the initial data requested is three pages size, but this value can be changed, in the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html), using the [`setInitialLoadSizeHint`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
+By default the initial data requested is three pages, but this value can be changed, in the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html), using the [`setInitialLoadSizeHint`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
 This parameter can be set in the [`Fountain`](Listing.md) factory method. 
 When the service data comes, all data is refreshed in the [`DataSource`] using the [`CachedDataSourceAdapter`].
 Note that the [`Listing`](Listing.md) component will notify that the data changed.
