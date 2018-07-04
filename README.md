@@ -46,7 +46,7 @@ As in the previous way, there are some optional parameters that you can specify 
 ### Caching strategy
 <!--
 The pagination strategy that is using **Fountain** can be seen in the following image.
-k
+
 ***TODO: Add an image ***
 -->
 
