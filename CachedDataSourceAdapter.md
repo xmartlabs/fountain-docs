@@ -35,8 +35,9 @@ However, you could use any other [`DataSource`].
 The [`DataSource`] should return the entities in the same order as provided by the service.
 
 There are at least two approaches we can follow to solve this problem:
+
 1. Add an index to the entity.
-2. Add a secondary entity to save the index.
+1. Add a secondary entity to save the index.
 
 ### Add an index to the entity
 
