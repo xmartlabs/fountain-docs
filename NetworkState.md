@@ -9,7 +9,6 @@ enum class Status {
   FAILED
 }
 
-@Suppress("DataClassPrivateConstructor")
 data class NetworkState private constructor(
     val status: Status,
     val throwable: Throwable? = null) {
