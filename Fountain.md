@@ -40,7 +40,7 @@ fun <Value> createNetworkWithCacheSupportListing(
 
 There are two required components 
 1. A [`NetworkDataSourceAdapter<out ListResponse<Value>>`](NetworkDataSourceAdapter.md) to fetch all pages.
-1. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to take control of the `DataSource`.
+2. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to take control of the `DataSource`.
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.

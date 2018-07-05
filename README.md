@@ -1,4 +1,4 @@
-![Fountain](images/banner.png)
+![](images/banner.png)
 
 Fountain is an Android Kotlin library conceived to make your life easier when dealing with **paged** endpoint **services**, where the paging is based on incremental page numbers (e.g. 1, 2, 3, ...).
 It uses the [Google Android Architecture Components](https://developer.android.com/topic/libraries/architecture/), mainly the [Android Paging Library] to make it easier to work with paged services.
@@ -40,7 +40,7 @@ Fountain.createNetworkWithCacheSupportListing(
 ```
 There are two required components 
 1. A [`NetworkDataSourceAdapter<out ListResponse<Value>>`](NetworkDataSourceAdapter.md) to fetch all pages.
-1. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to update the [`DataSource`].
+2. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to update the [`DataSource`].
 It's the interface that the library will use to take control of the [`DataSource`].
 
 As in the previous way, there are some optional parameters that you can specify in the [`Listing`](Listing.md) creator.
