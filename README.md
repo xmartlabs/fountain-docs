@@ -38,9 +38,10 @@ Fountain.createNetworkWithCacheSupportListing(
 )
 
 ```
-There are two required components 
+There are two required components
+
 1. A [`NetworkDataSourceAdapter<out ListResponse<Value>>`](NetworkDataSourceAdapter.md) to fetch all pages.
-2. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to update the [`DataSource`].
+1. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to update the [`DataSource`].
 It's the interface that the library will use to take control of the [`DataSource`].
 
 As in the previous way, there are some optional parameters that you can specify in the [`Listing`](Listing.md) creator.
