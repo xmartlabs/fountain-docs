@@ -21,7 +21,7 @@ The adapter has four methods that the user has to implement:
 - `getDataSourceFactory`: will be used to list the cached elements.
 The returned value is used to create the [`LivePagedListBuilder`](https://developer.android.com/reference/android/arch/paging/LivePagedListBuilder).
 - `runInTransaction` will be used to apply multiple [`DataSource`] operations in a single transaction. That means that if something fails, all operations will fail.
-- `saveEntities` will be invoked to save all entities returned by the [NetworkDataSourceAdapter] into the [`DataSource`].
+- `saveEntities` will be invoked to save all entities returned by the [`NetworkDataSourceAdapter`] into the [`DataSource`].
 This will be executed in a transaction.
 - `dropEntities` will be used to delete all cached entities from the [`DataSource`].
 This will be executed in a transaction.
@@ -191,4 +191,4 @@ In both approaches you have to remember the extra steps to take before dropping 
 However, the second one provides an easier and more flexible way to implement them.
 
 [`DataSource`]: https://developer.android.com/reference/android/arch/paging/DataSource
-[NetworkDataSourceAdapter]: NetworkDataSourceAdapter.md
+[`NetworkDataSourceAdapter`]: NetworkDataSourceAdapter.md
