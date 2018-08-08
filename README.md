@@ -47,7 +47,7 @@ It's the interface that the library will use to take control of the [`DataSource
 As in the previous way, there are some optional parameters that you can specify in the [`Listing`](Listing.md) creator.
 
 ### Caching strategy
-The pagination strategy that is using **Fountain** can be seen in the following image:
+The pagination strategy that **Fountain** is using can be seen in the following image:
 <br> <p align="center"> <img src="images/paginationStrategy.png" /> </p>
 
 The paging strategy starts with an initial service data request.
