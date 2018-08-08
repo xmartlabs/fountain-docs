@@ -48,7 +48,7 @@ As in the previous way, there are some optional parameters that you can specify 
 
 ### Caching strategy
 The pagination strategy that is using **Fountain** can be seen in the following image:
-<br> <p align="center"> <img src="images/paginationStrategy.png" /> </p>
+<br> <br> <p align="center"> <img src="images/paginationStrategy.png" /> </p>
 
 The paging strategy starts with an initial service data request.
 By default the initial data requested is three pages, but this value can be changed, in the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html), using the [`setInitialLoadSizeHint`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
