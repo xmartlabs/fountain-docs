@@ -1,66 +1,45 @@
 # NetworkDataSourceAdapter
 The `NetworkDataSourceAdapter` is an adapter which provides the required methods to handle the network requests.
 
-Let's introduce the `PageFetcher` concept.
-
-## Page Fetcher
-The `PageFetcher` is used to fetch each page from the service.
-
 ```kotlin
-interface PageFetcher<T> {
-  @CheckResult
-  fun fetchPage(page: Int, pageSize: Int): Single<out T>
-}
-```
+interface NetworkDataSourceAdapter<PageFetcher> {
+  val pageFetcher: PageFetcher
 
-This interface has only one method which is used to fetch every page.
-The library will invoke it with two parameters: 
-- `page`: The page number to be requested.
-- `pageSize`: The page size.
-This parameter must be respected, usually the initial load page size has a different `pageSize` than the other requests.
-*If the server doesn't support a custom `pageSize`, you have to setup the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html) to use the same page size for all requests.
-You can do it by setting `pageSize` in the [`setInitialLoadSizeHint()`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
-The `InitialLoadSizeHint` must to be a multiple of the page size.
-This configuration can be set in the [Fountain factory](Fountain.md).*
-
-## NetworkDataSourceAdapter
-The `NetworkDataSourceAdapter` is an adapter with two features:
-- **Fetch** a page
-- **Check** if a page can be fetched.
-
-```kotlin
-interface NetworkDataSourceAdapter<T> : PageFetcher<T> {
-  @CheckResult
   fun canFetch(page: Int, pageSize: Int): Boolean
 }
 ```
 
-`NetworkDataSourceAdapter` is a `PageFetcher` with an additional method, `canFetch`, used to stop requesting pages.
-For example, if you know that the endpoint returns only 3 pages of 10 items each, and the library invokes `canFetch(page = 5, pageSize = 10)` then you should return `false`.
-You have to implement this function using the service specification.
-Sometimes the service returns the page or entity amount in the response headers or in the response body, so you have to use that information to implement this function.
+It has two main features:
+- **Fetch** a page
+- **Check** if a page can be fetched.
 
-## NetworkDataSourceAdapter of ListResponse
-The library requires a `NetworkDataSourceAdapter<ListResponse<T>>` to execute the requests and consume the responses. There are several [`ListResponse`] types that you can use.
+
+# Page Fetcher
+Page fetcher is an structure with enables the library to fetch an specific page from a service call.
+There are 3 page fetchers, one for each library module.
+- [CoroutinePageFetcher](CoroutineNetworkDataSourceAdapter.md#coroutine-page-fetcher)
+- [RetrofitPageFetcher](RetrofitNetworkDataSourceAdapter.md#retrofit-page-fetcher)
+- [RxPageFetcher](RxNetworkDataSourceAdapter.md#rx-page-fetcher)
+
+
+Given a specific `page` and `pageSize`, the `PageFetcher` provides a way to get a `ListResponse<T>`. 
+There are several [`ListResponse`] types that you can use.
+
 
 ## NetworkDataSourceAdapter providers
+If you know exactly the page or entity count, the library provides a way to generate a NetworkDataSourceAdapter without implementing the canFetch method.
+If you use either [`ListResponseWithPageCount`](ListResponse.md#list-response-with-page-count) or [`ListResponseWithEntityCount`](ListResponse.md#list-response-with-entity-count) you can convert a `PageFetcher` to a `NetworkDataSourceAdapter`.
 
-if you know exactly the page or entity count, the library provides a way to generate a `NetworkDataSourceAdapter` without implementing the `canFetch` method.
-
+To do that Fountain provides some extensions:
 
 ```kotlin
-class NetworkDataSourceWithTotalEntityCountAdapter<T>(
-  val pageFetcher: PageFetcher<out ListResponseWithEntityCount<T>>,
-  firstPage: Int = 1
-) : NetworkDataSourceAdapter<ListResponse<T>>
-
-class NetworkDataSourceWithTotalPageCountAdapter<T>(
-  val pageFetcher: PageFetcher<out ListResponseWithPageCount<T>>,
-  firstPage: Int = 1
-) : NetworkDataSourceAdapter<ListResponse<T>>
+fun <ServiceResponse : ListResponseWithEntityCount<*>>
+    PageFetcher<ServiceResponse>.toTotalEntityCountNetworkDataSourceAdapter(firstPage: Int)
+fun <ServiceResponse : ListResponseWithPageCount<*>>
+    PageFetcher<ServiceResponse>.toTotalPageCountNetworkDataSourceAdapter(firstPage: Int)
 ```
 
-Depending on whether you know the entity or the page count, we will use either `NetworkDataSourceWithTotalEntityCountAdapter` or `NetworkDataSourceWithTotalPageCountAdapter`.
+These extensions require the first page number, it has to be the same used in the Fountain static factory constructor.
 
 [`Fountain`]: Fountain.md
 [`ListResponse`]: ListResponse.md
