@@ -19,7 +19,7 @@ Fountain supports 2 types of Retrofit service adapters:
 
 It also supports not using any of them, as you could work with a simple Retrofit [call](https://square.github.io/retrofit/2.x/retrofit/retrofit2/Call.html).
 
-It has 3 different dependencies that you can [include](IncludingInProject.md) them depending on what libraries are you using.
+It has 3 different dependencies that you can [include](IncludingInProject.md) depending on what libraries are you using.
 
 ## Factory constructors
 There's one static factory object class for each each dependency.
