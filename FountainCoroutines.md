@@ -1,6 +1,6 @@
 # Fountain Coroutines
 
-This module provides a [`Listing`] component based on a Retrofit Coroutine adapter like [this](https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter).
+This module provides a [`Listing`] component based on a Retrofit Coroutine adapter like [this one](https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter).
 
 ## Network Support Listing Creator
 
@@ -15,7 +15,7 @@ FountainCoroutines.createNetworkListing(
 )
 ```
 
-There's only one required structure, [`CoroutineNetworkDataSourceAdapter<out ListResponse<Value>>`](CoroutineNetworkDataSourceAdapter.md), which this library uses to handle the paging.
+There's only one required structure, [`CoroutineNetworkDataSourceAdapter<out ListResponse<Value>>`](CoroutineNetworkDataSourceAdapter.md), which Fountain uses to handle the paging.
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.

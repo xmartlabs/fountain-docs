@@ -14,7 +14,7 @@ FountainRx.createNetworkListing(
 )
 ```
 
-There's only one required structure, [`RxNetworkDataSourceAdapter<out ListResponse<Value>>`](RxNetworkDataSourceAdapter.md), which this library uses to handle the paging.
+There's only one required structure, [`RxNetworkDataSourceAdapter<out ListResponse<Value>>`](RxNetworkDataSourceAdapter.md), which Fountain uses to handle the paging.
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.

@@ -9,13 +9,13 @@ interface NetworkDataSourceAdapter<PageFetcher> {
 }
 ```
 
-It has two main features:
+Its two main features are:
 - **Fetch** a page
 - **Check** if a page can be fetched.
 
 
 # Page Fetcher
-Page fetcher is an structure with enables the library to fetch an specific page from a service call.
+Page fetcher is a structure that enables the library to fetch a specific page from a service call.
 There are 3 page fetchers, one for each library module.
 - [CoroutinePageFetcher](CoroutineNetworkDataSourceAdapter.md#coroutine-page-fetcher)
 - [RetrofitPageFetcher](RetrofitNetworkDataSourceAdapter.md#retrofit-page-fetcher)
@@ -39,7 +39,7 @@ fun <ServiceResponse : ListResponseWithPageCount<*>>
     PageFetcher<ServiceResponse>.toTotalPageCountNetworkDataSourceAdapter(firstPage: Int)
 ```
 
-These extensions require the first page number, it has to be the same used in the Fountain static factory constructor.
+These extensions require the first page number, which has to be the same that was used in the Fountain static factory constructor.
 
 [`Fountain`]: Fountain.md
 [`ListResponse`]: ListResponse.md

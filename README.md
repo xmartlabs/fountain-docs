@@ -19,7 +19,7 @@ Fountain supports 2 types of Retrofit service adapters:
 
 It also supports not using any of them, as you could work with a simple Retrofit [call](https://square.github.io/retrofit/2.x/retrofit/retrofit2/Call.html).
 
-It has 3 different dependencies that you can [include them](IncludingInProject.md) depending what libraries are you using.
+It has 3 different dependencies that you can [include](IncludingInProject.md) them depending on what libraries are you using.
 
 ## Factory constructors
 There's one static factory object class for each each dependency.
@@ -27,7 +27,7 @@ There's one static factory object class for each each dependency.
 - [FountainRetrofit](FountainRetrifit.md): Used to get a [`Listing`] from a Retrofit service without using a special adapter.
 - [FountainRx](FountainRxJava2.md): Used to get a [`Listing`] from a Retrofit service which uses a RxJava2 adapter.
 
-Each static factory has two constructors, one for each Fountain mode.
+Each static factory has two constructors, one for each of Fountain's modes.
 
 ## **Network Support** 
 
@@ -35,9 +35,9 @@ It provides a [`Listing`] structure based on a common Retrofit service implement
 
 It can be obtained invoking `createNetworkListing` from the static factory class.
 
-It requires only one argument, a [`NetworkDataSourceAdapter`], which provides all operations that the library 
+Only one argument is required, a [`NetworkDataSourceAdapter`], which provides all operations that the library 
 will use to handle the paging.
-The [`NetworkDataSourceAdapter`] contains two main functions: a method to check if a page can be fetched and a property to fetch it.
+The [`NetworkDataSourceAdapter`] has two main functions: a method to check if a page can be fetched and a property to fetch it.
 
 ## **Network + Cache Support** 
 
@@ -61,7 +61,7 @@ It starts with an initial service data request.
 By default the initial data requested is three pages, but this value can be changed, in the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html), using the [`setInitialLoadSizeHint`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
 This parameter can be set in the factory constructor method. 
 When the service data comes from the service, all data is refreshed in the `DataSource` using the `CachedDataSourceAdapter`.
-Note that the `Listing` component will notify that data changed.
+Note that the `Listing` component will notify that the data has changed.
 
 After that, the [Android Paging Library] will require pages when the local data is running low.
 When a new page is required, the paging library will invoke a new service call, and will use the `CachedDataSourceAdapter` to save the returned data into the `DataSource`.

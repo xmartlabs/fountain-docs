@@ -6,7 +6,7 @@ Fountain has a number of artifacts that you can include in the project.
 
 **Coroutine module:** Uses a [Coroutine Retrofit adapter](https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter) to fetch the pages.
 
-**RxJava2 module:** Uses Fountain using a [Coroutine Retrofit adapter](https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter) to fetch the pages.
+**RxJava2 module:** Uses a RxJava2 Retrofit adapter to fetch the pages.
 
 _These modules are independent and none of them are strictly required._
 
