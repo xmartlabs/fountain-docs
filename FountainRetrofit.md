@@ -1,20 +1,20 @@
-# Fountain
+# Fountain Retrofit
 
-Fountain is a [`Listing`] factory, that provides two static methods: one for **Network support** and another one for **Cache + Network support**.
+This module provides a [`Listing`] component based on a Retrofit [call](https://square.github.io/retrofit/2.x/retrofit/retrofit2/Call.html) implementation.
 
 ## Network Support Listing Creator
 
-A Listing with Network support can be created invoking the `createNetworkListing` method in the `Fountain` structure.
+A Listing with Network support can be created invoking `createNetworkListing`.
 ```kotlin
-fun <Value> createNetworkListing(
-  networkDataSourceAdapter: NetworkDataSourceAdapter<out ListResponse<Value>>,
-  firstPage: Int = DEFAULT_FIRST_PAGE,
-  ioServiceExecutor: Executor = IoExecutors.NETWORK_EXECUTOR,
-  pagedListConfig: PagedList.Config = DEFAULT_PAGED_LIST_CONFIG
+FountainRetrofit.createNetworkListing(
+  networkDataSourceAdapter: RetrofitNetworkDataSourceAdapter<out ListResponse<out NetworkValue>>,
+  firstPage: Int = FountainConstants.DEFAULT_FIRST_PAGE,
+  ioServiceExecutor: Executor = FountainConstants.NETWORK_EXECUTOR,
+  pagedListConfig: PagedList.Config = FountainConstants.DEFAULT_PAGED_LIST_CONFIG
 )
 ```
 
-There's only one required structure, [`NetworkDataSourceAdapter<out ListResponse<Value>>`](NetworkDataSourceAdapter.md), which this library uses to handle the paging.
+There's only one required structure, [`RetrofitNetworkDataSourceAdapter<out ListResponse<Value>>`](RetrofitNetworkDataSourceAdapter.md), which Fountain uses to handle the paging.
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.
@@ -25,22 +25,23 @@ In this object you can specify several options, for example the `pageSize` and t
 
 ## Cache + Network Support Listing Creator
 
-A Listing with Cache + Network Support can be created invoking the `createNetworkWithCacheSupportListing` method in the `Fountain` structure
+A Listing with Cache + Network Support can be created invoking the `createNetworkWithCacheSupportListing`
+
 
 ```kotlin
-fun <Value> createNetworkWithCacheSupportListing(
-  networkDataSourceAdapter: NetworkDataSourceAdapter<out ListResponse<Value>>,
-  cachedDataSourceAdapter: CachedDataSourceAdapter<Value>,
-  ioServiceExecutor: Executor = IoExecutors.NETWORK_EXECUTOR,
-  ioDatabaseExecutor: Executor = IoExecutors.DATABASE_EXECUTOR,
-  firstPage: Int = DEFAULT_FIRST_PAGE,
-  pagedListConfig: PagedList.Config = DEFAULT_PAGED_LIST_CONFIG
+FountainRetrofit.createNetworkWithCacheSupportListing(
+  networkDataSourceAdapter: RetrofitNetworkDataSourceAdapter<out ListResponse<out NetworkValue>>,
+  cachedDataSourceAdapter: CachedDataSourceAdapter<NetworkValue, DataSourceValue>,
+  ioServiceExecutor: Executor = FountainConstants.NETWORK_EXECUTOR,
+  ioDatabaseExecutor: Executor = FountainConstants.DATABASE_EXECUTOR,
+  firstPage: Int = FountainConstants.DEFAULT_FIRST_PAGE,
+  pagedListConfig: PagedList.Config = FountainConstants.DEFAULT_PAGED_LIST_CONFIG
 )
 ```
 
 There are two required components:
 
-1. A [`NetworkDataSourceAdapter<out ListResponse<Value>>`](NetworkDataSourceAdapter.md) to fetch all pages.
+1. A [`RetrofitNetworkDataSourceAdapter<out ListResponse<Value>>`](RetrofitNetworkDataSourceAdapter.md) to fetch all pages.
 1. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to take control of the `DataSource`.
 
 In addition, there are some optional parameters that you can define:

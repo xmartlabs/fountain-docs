@@ -8,36 +8,43 @@ It provides an awesome way of displaying the paged entity list and reflecting th
 If you use this library, you can create an MVVM architecture app and combine it with the repository pattern.
 If you get a repository which provides a [`Listing`] component of each paged list, you will be creating a robuster app.
 
-It also provides two ways to go: a mode with **network** support and a mode with **network + cache** support. 
+It also provides two ways to go: a mode with [**network** support](#network-support) and a mode with [**network + cache** support](#network--cache-support). 
 
 The strategy you choose will depend on your problem.
-To create the [`Listing`] you have to invoke one of the static factory methods in the [`Fountain`] singleton object.
+
+## Modules
+Fountain supports 2 types of Retrofit service adapters:
+- A [RxJava2 Retrofit adapter.](https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava2)
+- A [Coroutine Retrofit adapter.](https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter)
+
+It also supports not using any of them, as you could work with a simple Retrofit [call](https://square.github.io/retrofit/2.x/retrofit/retrofit2/Call.html).
+
+It has 3 different dependencies that you can [include](IncludingInProject.md) depending on what libraries are you using.
+
+## Factory constructors
+There's one static factory object class for each each dependency.
+- [FountainCoroutines](FountainCoroutines.md): Used to get a [`Listing`] from a Retrofit service which uses a Coroutine adapter.
+- [FountainRetrofit](FountainRetrifit.md): Used to get a [`Listing`] from a Retrofit service without using a special adapter.
+- [FountainRx](FountainRxJava2.md): Used to get a [`Listing`] from a Retrofit service which uses a RxJava2 adapter.
+
+Each static factory has two constructors, one for each of Fountain's modes.
 
 ## **Network Support** 
 
-It provides a [`Listing`](Listing.md) structure based on a [Retrofit](http://square.github.io/retrofit/) and [RxJava](https://github.com/ReactiveX/RxJava) service.
-Note that the entities aren't saved anywhere.
+It provides a [`Listing`] structure based on a common Retrofit service implementation. Note that the entities aren't saved anywhere.
 
-To use this feature you have to provide a [`NetworkDataSourceAdapter<out ListResponse<Value>>`](NetworkDataSourceAdapter.md) to the Listing constructor. 
-The library will use it to handle the paging.
+It can be obtained invoking `createNetworkListing` from the static factory class.
 
-```kotlin
-Fountain.createNetworkListing(networkDataSourceAdapter)
-```
-
-Additionally, there are some optional parameters that you can provide to the [`Listing`] creator. These parameters are specified in the [`Fountain`] section.
+Only one argument is required, a [`NetworkDataSourceAdapter`], which provides all operations that the library 
+will use to handle the paging.
+The [`NetworkDataSourceAdapter`] has two main functions: a method to check if a page can be fetched and a property to fetch it.
 
 ## **Network + Cache Support** 
 
-It provides a [`Listing`](Listing.md) structure with cache support using [Retrofit](http://square.github.io/retrofit/) and [RxJava](https://github.com/ReactiveX/RxJava) for the service layer and a [`DataSource`] for caching the data.
+Provides a [`Listing`] with cache support using a common Retrofit service implementation and a [`DataSource`] for caching the data.
 
-```kotlin
-Fountain.createNetworkWithCacheSupportListing(
-  networkDataSourceAdapter = networkDataSourceAdapter,
-  cachedDataSourceAdapter = cachedDataSourceAdapter
-)
+It can be obtained invoking `createNetworkWithCacheSupportListing` from the static factory class.
 
-```
 There are two required components
 
 1. A [`NetworkDataSourceAdapter<out ListResponse<Value>>`](NetworkDataSourceAdapter.md) to fetch all pages.
@@ -51,15 +58,14 @@ The pagination strategy that **Fountain** is using can be seen in the following 
 
 ![](.gitbook/assets/paginationstrategy.png)
 
-The paging strategy starts with an initial service data request.
+It starts with an initial service data request.
 By default the initial data requested is three pages, but this value can be changed, in the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html), using the [`setInitialLoadSizeHint`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
-This parameter can be set in the [`Fountain`](Listing.md) factory method. 
-When the service data comes, all data is refreshed in the [`DataSource`] using the [`CachedDataSourceAdapter`].
-Note that the [`Listing`](Listing.md) component will notify that the data changed.
+This parameter can be set in the factory constructor method. 
+When the service data comes from the service, all data is refreshed in the `DataSource` using the `CachedDataSourceAdapter`.
+Note that the `Listing` component will notify that the data has changed.
 
 After that, the [Android Paging Library] will require pages when the local data is running low.
-When a new page is required, the paging library will invoke a new service call, and will use the [`CachedDataSourceAdapter`] to save the returned data into the [`DataSource`].
-
+When a new page is required, the paging library will invoke a new service call, and will use the `CachedDataSourceAdapter` to save the returned data into the `DataSource`.
 
 ## Architecture recommendations
 
@@ -72,3 +78,4 @@ The `ViewModel`, can use the different [`Listing`] elements, provided by the rep
 [`DataSource`]: https://developer.android.com/reference/android/arch/paging/DataSource
 [`Fountain`]: Fountain.md
 [`Listing`]: Listing.md
+[`NetworkDataSourceAdapter`]: NetworkDataSourceAdapter.md
