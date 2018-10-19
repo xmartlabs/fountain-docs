@@ -1,4 +1,4 @@
-![](images/banner.png)
+![](.gitbook/assets/banner.png)
 
 Fountain is an Android Kotlin library conceived to make your life easier when dealing with **paged** endpoint **services**, where the paging is based on incremental page numbers (e.g. 1, 2, 3, ...).
 It uses the [Google Android Architecture Components](https://developer.android.com/topic/libraries/architecture/), mainly the [Android Paging Library] to make it easier to work with paged services.
@@ -48,7 +48,8 @@ As in the previous way, there are some optional parameters that you can specify 
 
 ### Caching strategy
 The pagination strategy that **Fountain** is using can be seen in the following image:
-<br> <p align="center"> <img src="images/paginationStrategy.png" /> </p>
+
+![](.gitbook/assets/paginationstrategy.png)
 
 The paging strategy starts with an initial service data request.
 By default the initial data requested is three pages, but this value can be changed, in the [`PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html), using the [`setInitialLoadSizeHint`](https://developer.android.com/reference/android/arch/paging/PagedList.Config.html#initialLoadSizeHint) method.
