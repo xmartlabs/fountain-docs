@@ -1,7 +1,10 @@
-# Rx Network Data Source Adapter
-The `RxNetworkDataSourceAdapter` is an adapter which provides the required methods to handle the network requests.
+# Rx Network Adapters
 
-## Rx Page Fetcher
+The Rx Network Adapters are structures, based on [RxJava](https://github.com/ReactiveX/RxJava) engine, that are used to handle the network request.
+
+## Rx Network Adapters for paged endpoints.
+
+### Rx Page Fetcher
 The `RxPageFetcher` is used to fetch each page from the service.
 
 ```kotlin
@@ -22,9 +25,21 @@ This configuration can be set in the [Fountain factory](FountainRxs.md).*
 
 This method returns a `Single<out ListResponse<*>`, that the library will use to fetch a specific page.
 
-## NetworkDataSourceAdapter
+### RxNetworkDataSourceAdapter
 The `RxNetworkDataSourceAdapter` is a [NetworkDataSourceAdapter](NetworkDataSourceAdapter.md) based on a [`RxPageFetcher`](#rx-page-fetcher) 
 
 ```kotlin
 interface RxNetworkDataSourceAdapter<T : ListResponse<*>> : NetworkDataSourceAdapter<RxPageFetcher<T>>
+```
+
+## Rx Network Adapters for not paged endpoints.
+
+### Not Paged Rx Page Fetcher
+
+The `NotPagedRxPageFetcher` provides a method to fetch the data from a service source.
+
+```kotlin
+interface NotPagedRxPageFetcher<T : ListResponse<*>> {
+  fun fetchData(): Single<T>
+}
 ```

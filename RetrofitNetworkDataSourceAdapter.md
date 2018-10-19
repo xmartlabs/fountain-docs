@@ -1,7 +1,10 @@
-# Retrofit Network Data Source Adapter
-The `RetrofitNetworkDataSourceAdapter` is an adapter which provides the required methods to handle the network requests.
+# Retrofit Network Adapters
 
-## Retrofit Page Fetcher
+The Retrofit Network Adapters are structures, based on [Retrofit](http://square.github.io/retrofit/) engine, that are used to handle the network request.
+
+## Retrofit Network Adapters for paged endpoints.
+
+### Retrofit Page Fetcher
 The `RetrofitPageFetcher` is used to fetch each page from the service.
 
 ```kotlin
@@ -22,9 +25,21 @@ This configuration can be set in the [Fountain factory](FountainRetrofit.md).*
 
 This method returns a `Call<out ListResponse<*>`, that the library will use to fetch a specific page.
 
-## NetworkDataSourceAdapter
+### NetworkDataSourceAdapter
 The `RetrofitNetworkDataSourceAdapter` is a [NetworkDataSourceAdapter](NetworkDataSourceAdapter.md) based on a [`RetrofitPageFetcher`](#retrofit-page-fetcher).
 
 ```kotlin
 interface RetrofitNetworkDataSourceAdapter<T : ListResponse<*>> : NetworkDataSourceAdapter<RetrofitPageFetcher<T>>
+```
+
+## Retrofit Network Adapters for not paged endpoints.
+
+### Not Paged Retrofit Page Fetcher
+
+The `NotPagedRetrofitPageFetcher` provides a method to fetch the data from a service source.
+
+```kotlin
+interface NotPagedRetrifitPageFetcher<T : ListResponse<*>> {
+  fun fetchData(): Call<T>
+}
 ```

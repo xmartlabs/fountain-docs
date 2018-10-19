@@ -8,6 +8,10 @@ It provides an awesome way of displaying the paged entity list and reflecting th
 If you use this library, you can create an MVVM architecture app and combine it with the repository pattern.
 If you get a repository which provides a [`Listing`] component of each paged list, you will be creating a robuster app.
 
+This library was designed to work with paged endpoints.
+However, it also supports working with not paged endpoints.
+That means that you can use all [`Listing`] features in services that return a list that's not paged.
+
 It also provides two ways to go: a mode with [**network** support](#network-support) and a mode with [**network + cache** support](#network--cache-support). 
 
 The strategy you choose will depend on your problem.
@@ -27,33 +31,31 @@ There's one static factory object class for each each dependency.
 - [FountainRetrofit](FountainRetrifit.md): Used to get a [`Listing`] from a Retrofit service without using a special adapter.
 - [FountainRx](FountainRxJava2.md): Used to get a [`Listing`] from a Retrofit service which uses a RxJava2 adapter.
 
-Each static factory has two constructors, one for each of Fountain's modes.
+Each static factory has the same constructors with different params:
+- [`createNetworkListing`](#network-support-for-paged-endpoints): A constructor to get a `Listing` component from a common **paged** Retrofit **service** implementation.
+- [`createNotPagedNetworkListing`](#network-support-for-not-paged-endpoints): A constructor to get a `Listing` component from a common **not paged** Retrofit **service** implementation.
+- [`createNetworkWithCacheSupportListing`](#cache--network-support-for-paged-endpoints): A constructor to get a `Listing` component with **cache support** from a common **paged** Retrofit **service** implementation.
+- [`createNotPagedNetworkWithCacheSupportListing`](#cache--network-support-for-not-paged-endpoints): A constructor to get a `Listing` component with **cache support** from a common **not paged** Retrofit **service** implementation.
 
-## **Network Support** 
+## Fountain Modes
 
-It provides a [`Listing`] structure based on a common Retrofit service implementation. Note that the entities aren't saved anywhere.
+Fountain has two modes: a mode with [**network** support](#network-support) and another one with [**network + cache** support](#network--cache-support). 
 
-It can be obtained invoking `createNetworkListing` from the static factory class.
+Take into account that this is merely an introduction. The full documentation for all of Fountain's modes is available in each module's page:
+- [FountainCoroutines](FountainCoroutines.md).
+- [FountainRetrofit](FountainRetrifit.md).
+- [FountainRx](FountainRxJava2.md).
 
-Only one argument is required, a [`NetworkDataSourceAdapter`], which provides all operations that the library 
-will use to handle the paging.
-The [`NetworkDataSourceAdapter`] has two main functions: a method to check if a page can be fetched and a property to fetch it.
+### **Network Support**
 
-## **Network + Cache Support** 
+It provides a [`Listing`] structure based on a common Retrofit service implementation.
+Note that the entities aren't saved anywhere.
+
+### **Network + Cache Support** 
 
 Provides a [`Listing`] with cache support using a common Retrofit service implementation and a [`DataSource`] for caching the data.
 
-It can be obtained invoking `createNetworkWithCacheSupportListing` from the static factory class.
-
-There are two required components
-
-1. A [`NetworkDataSourceAdapter<out ListResponse<Value>>`](NetworkDataSourceAdapter.md) to fetch all pages.
-1. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to update the [`DataSource`].
-It's the interface that the library will use to take control of the [`DataSource`].
-
-As in the previous way, there are some optional parameters that you can specify in the [`Listing`](Listing.md) creator.
-
-### Caching strategy
+#### Caching strategy
 The pagination strategy that **Fountain** is using can be seen in the following image:
 <br> <p align="center"> <img src="images/paginationStrategy.png" /> </p>
 

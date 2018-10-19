@@ -1,7 +1,10 @@
-# Coroutine Network Data Source Adapter
-The `CoroutineNetworkDataSourceAdapter` is an adapter which provides the required methods to handle the network requests.
+# Coroutine Network Adapters
 
-## Coroutine Page Fetcher
+The Coroutine Network Adapters are structures, based on [Kotlin Coroutine](https://kotlinlang.org/docs/reference/coroutines-overview.html) engine, that are used to handle the network request.
+
+## Coroutine Network Adapters for paged endpoints.
+
+### Coroutine Page Fetcher
 The `CoroutinePageFetcher` is used to fetch each page from the service.
 
 ```kotlin
@@ -22,9 +25,21 @@ This configuration can be set in the [Fountain factory](FountainCoroutines.md).*
 
 This method returns a `Deferred<out ListResponse<*>`, that the library will use to fetch a specific page.
 
-## NetworkDataSourceAdapter
+### Network Data Source Adapter
 The `CoroutineNetworkDataSourceAdapter` is a [NetworkDataSourceAdapter](NetworkDataSourceAdapter.md) based on a [`CoroutinePageFetcher`](#coroutine-page-fetcher) 
 
 ```kotlin
 interface CoroutineNetworkDataSourceAdapter<T : ListResponse<*>> : NetworkDataSourceAdapter<CoroutinePageFetcher<T>>
+```
+
+## Coroutine Network Adapters for not paged endpoints.
+
+### Not Paged Coroutine Page Fetcher
+
+The `NotPagedRetrofitPageFetcher` provides a method to fetch the data from a service source.
+
+```kotlin
+interface NotPagedCoroutinePageFetcher<T : ListResponse<*>> {
+  fun fetchData(): Deferred<T>
+}
 ```
