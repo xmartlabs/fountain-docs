@@ -15,7 +15,7 @@ FountainCoroutines.createNetworkListing(
 )
 ```
 
-There's only one required structure, [`CoroutineNetworkDataSourceAdapter<out ListResponse<Value>>`], which Fountain uses to handle the paging.
+There's only one required structure, [`CoroutineNetworkDataSourceAdapter<out ListResponse<Value>>`], that Fountain uses to handle the paging.
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.
