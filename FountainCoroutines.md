@@ -35,7 +35,7 @@ fun <NetworkValue> createNotPagedNetworkListing(
 )
 ```
 
-There's only one required structure, [`NotPagedCoroutinePageFetcher<out ListResponse<Value>>`], which Fountain uses to handle the paging.
+There's only one required structure, [`NotPagedCoroutinePageFetcher<out ListResponse<Value>>`], that Fountain uses to handle the paging.
 
 In addition, there are some optional parameters that you can define:
 - [`ioServiceCoroutineDispatcher : CoroutineDispatcher`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/): The [CoroutineDispatcher] with which the service call will be made. By default, the library will use [Dispatchers.IO].
