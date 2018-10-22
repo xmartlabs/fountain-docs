@@ -1,6 +1,6 @@
 # Coroutine Network Adapters
 
-The Coroutine Network Adapters are structures, based on [Kotlin Coroutine](https://kotlinlang.org/docs/reference/coroutines-overview.html) engine, that are used to handle the network request.
+The Coroutine Network Adapters are structures, based on [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) engine, that are used to handle the network request.
 
 ## Coroutine Network Adapters for paged endpoints.
 
