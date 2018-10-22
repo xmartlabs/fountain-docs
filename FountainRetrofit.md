@@ -83,7 +83,7 @@ There are two required components:
 1. A [`CachedDataSourceAdapter<Value>`](CachedDataSourceAdapter.md) to take control of the `DataSource`.
 
 In addition, there are some optional parameters that you can define:
-- [`ioServiceExecutor : Executor`](https://developer.android.com/reference/java/util/concurrent/Executor): The executor through which the service call will be made  By default, the library will use a pool of 5 threads.
+- [`ioServiceExecutor : Executor`](https://developer.android.com/reference/java/util/concurrent/Executor): The executor through which the service call will be made. By default, the library will use a pool of 5 threads.
 - [`ioDatabaseExecutor : Executor`](https://developer.android.com/reference/java/util/concurrent/Executor): The executor through which the database transactions will be made. By default the library will use a single thread executor.
 
 [`Listing`]: Listing.md
