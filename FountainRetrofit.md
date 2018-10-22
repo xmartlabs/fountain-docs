@@ -34,7 +34,7 @@ FountainRetrofit.createNotPagedNetworkListing(
 
 There's only one required structure, [`NotPagedRetrifitPageFetcher<out ListResponse<Value>>`], which Fountain uses to handle the paging.
 
-Additionally you can specify the [`ioServiceExecutor : Executor`](https://developer.android.com/reference/java/util/concurrent/Executor). It's executor with which the service call will be made. By default, the library will use a pool of 5 threads.
+Additionally you can specify the [`ioServiceExecutor : Executor`](https://developer.android.com/reference/java/util/concurrent/Executor). It's the executor that'll be used to make the service call.
 
 ## Cache + Network Support Listing Creator for paged endpoints
 
