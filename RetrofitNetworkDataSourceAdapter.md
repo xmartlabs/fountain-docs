@@ -1,6 +1,6 @@
 # Retrofit Network Adapters
 
-The Retrofit Network Adapters are structures, based on [Retrofit](http://square.github.io/retrofit/) engine, that are used to handle the network request.
+The Retrofit Network Adapters are structures based on [Retrofit's](http://square.github.io/retrofit/) engine, that are used to handle the network request.
 
 ## Retrofit Network Adapters for paged endpoints.
 

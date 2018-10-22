@@ -18,7 +18,7 @@ There's only one required structure, [`RxNetworkDataSourceAdapter<out ListRespon
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.
-- [`ioServiceScheduler: Scheduler`](http://reactivex.io/documentation/scheduler.html): The [Scheduler] with which the service call will be made. By default, the library will use [`Schedulers.io()`].
+- [`ioServiceScheduler: Scheduler`](http://reactivex.io/documentation/scheduler.html): The [Scheduler] that will be used to make the service call. By default, the library will use [`Schedulers.io()`].
 - [`pagedListConfig: PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config): The paged list configuration.
 In this object you can specify several options, for example the `pageSize` and the `initialPageSize`. 
 
@@ -37,7 +37,7 @@ There's only one required structure, [`NotPagedRxPageFetcher<out ListResponse<Va
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.
-Additionally you can specify the [`ioServiceScheduler: Scheduler`](http://reactivex.io/documentation/scheduler.html). It's the [Scheduler] with which the service call will be made. By default, the library will use [`Schedulers.io()`].
+Additionally you can specify the [`ioServiceScheduler: Scheduler`](http://reactivex.io/documentation/scheduler.html). It's the [Scheduler] that will be used to make the service call. By default, the library will use [`Schedulers.io()`].
 
 ## Cache + Network Support Listing Creator for paged endpoints
 
@@ -62,7 +62,7 @@ There are two required components:
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.
-- [`ioServiceScheduler: Scheduler`](http://reactivex.io/documentation/scheduler.html): The [Scheduler] with which the service call will be made. By default, the library will use [`Schedulers.io()`].
+- [`ioServiceScheduler: Scheduler`](http://reactivex.io/documentation/scheduler.html): The [Scheduler] that will be used to make the service call. By default, the library will use [`Schedulers.io()`].
 - [`ioDatabaseScheduler : Scheduler`](http://reactivex.io/documentation/scheduler.html): The [Scheduler] through which the database transactions will be made. By default the library will use a single thread [Scheduler].
 - [`pagedListConfig: PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config): The paged list configuration.
 In this object you can specify several options, for example the `pageSize` and the `initialPageSize`. 
@@ -87,7 +87,7 @@ There are two required components:
 1. A [`CachedDataSourceAdapter<Value>`] to take control of the `DataSource`.
 
 In addition, there are some optional parameters that you can define:
-- [`ioServiceScheduler: Scheduler`](http://reactivex.io/documentation/scheduler.html): The [Scheduler] with which the service call will be made. By default, the library will use [`Schedulers.io()`].
+- [`ioServiceScheduler: Scheduler`](http://reactivex.io/documentation/scheduler.html): The [Scheduler] that will be used to make the service call. By default, the library will use [`Schedulers.io()`].
 - [`ioDatabaseScheduler : Scheduler`](http://reactivex.io/documentation/scheduler.html): The [Scheduler] through which the database transactions will be made. By default the library will use a single thread [Scheduler].
 
 

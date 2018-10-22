@@ -1,6 +1,6 @@
 # Rx Network Adapters
 
-The Rx Network Adapters are structures, based on [RxJava](https://github.com/ReactiveX/RxJava) engine, that are used to handle the network request.
+The Rx Network Adapters are structures based on [RxJava's](https://github.com/ReactiveX/RxJava) engine, that are used to handle the network request.
 
 ## Rx Network Adapters for paged endpoints.
 

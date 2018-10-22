@@ -19,7 +19,7 @@ There's only one required structure, [`CoroutineNetworkDataSourceAdapter<out Lis
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.
-- [`ioServiceCoroutineDispatcher : CoroutineDispatcher`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/): The [CoroutineDispatcher] with which the service call will be made. By default, the library will use [Dispatchers.IO].
+- [`ioServiceCoroutineDispatcher : CoroutineDispatcher`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/): The [CoroutineDispatcher] that will be used to make the service call. By default, the library will use [Dispatchers.IO].
 - [`coroutineScope: CoroutineScope`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-scope/): Define the scope where the coroutines will run.
 - [`pagedListConfig: PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config): The paged list configuration.
 In this object you can specify several options, for example the `pageSize` and the `initialPageSize`. 
@@ -38,7 +38,7 @@ fun <NetworkValue> createNotPagedNetworkListing(
 There's only one required structure, [`NotPagedCoroutinePageFetcher<out ListResponse<Value>>`], that Fountain uses to handle the paging.
 
 In addition, there are some optional parameters that you can define:
-- [`ioServiceCoroutineDispatcher : CoroutineDispatcher`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/): The [CoroutineDispatcher] with which the service call will be made. By default, the library will use [Dispatchers.IO].
+- [`ioServiceCoroutineDispatcher : CoroutineDispatcher`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/): The [CoroutineDispatcher] that will be used to make the service call. By default, the library will use [Dispatchers.IO].
 - [`coroutineScope: CoroutineScope`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-scope/): Define the scope where the coroutines will run.
 
 
@@ -65,7 +65,7 @@ There are two required components:
 
 In addition, there are some optional parameters that you can define:
 - `firstPage: Int`: The initial page number, by default its value is 1.
-- [`ioServiceCoroutineDispatcher : CoroutineDispatcher`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/): The [CoroutineDispatcher] with which the service call will be made. By default, the library will use [Dispatchers.IO].
+- [`ioServiceCoroutineDispatcher : CoroutineDispatcher`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/): The [CoroutineDispatcher] that will be used to make the service call. By default, the library will use [Dispatchers.IO].
 - [`ioDatabaseCoroutineDispatcher : CoroutineDispatcher`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/): The [CoroutineDispatcher] through which the database transactions will be made. By default the library will use a single thread [CoroutineDispatcher].
 - [`coroutineScope: CoroutineScope`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-scope/): Define the scope where the coroutines will run.
 - [`pagedListConfig: PagedList.Config`](https://developer.android.com/reference/android/arch/paging/PagedList.Config): The paged list configuration.
@@ -91,7 +91,7 @@ There are two required components:
 1. A [`CachedDataSourceAdapter<Value>`] to take control of the `DataSource`.
 
 In addition, there are some optional parameters that you can define:
-- [`ioServiceCoroutineDispatcher : CoroutineDispatcher`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/): The [CoroutineDispatcher] with which the service call will be made. By default, the library will use [Dispatchers.IO].
+- [`ioServiceCoroutineDispatcher : CoroutineDispatcher`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/): The [CoroutineDispatcher] that will be used to make the service call. By default, the library will use [Dispatchers.IO].
 - [`ioDatabaseCoroutineDispatcher : CoroutineDispatcher`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/): The [CoroutineDispatcher] through which the database transactions will be made. By default the library will use a single thread [CoroutineDispatcher].
 - [`coroutineScope: CoroutineScope`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-scope/): Define the scope where the coroutines will run.
 
